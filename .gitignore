@@ -1,0 +1,114 @@
+// лаба 3 DOS
+@echo off
+set example2=%D:\example2%
+set example1=%D:\example%
+
+echo Sozdaem papki s failom i12\so\lab1.txt
+D:
+mkdir example
+cd example
+mkdir i12
+cd i12
+mkdir so
+cd so
+copy con lab1.txt
+copy con lab2.txt
+cd ..
+cd ..
+mkdir FO
+cls
+
+:main
+echo 1 - Perenos lab1.txt v FO
+echo 2 - Pereimenovanie FO v LS
+echo 3 - Kopirovanie lab1+lab2 v lab3
+echo 4 - Pereimenovka faila lab3 v tekst
+echo 5 - Sozdanie papki example2
+echo 6 - Kopirovanie example v example2
+echo 7 - Udalenie papki LS
+echo 8 - Sozdanie FP
+echo 9 - Pokaz dreva
+echo 10 - Sozdanie papok ABC CBA DEF
+echo 11 - Otchistka ecrana
+echo 12 - Vihod i otkritie novoi cmd
+echo 13 - exit
+
+
+set /p sym=Variant : 
+
+if "%sym%"=="1" (cls && move %example1%\i12\so\lab1.txt %example1%\FO && echo Vipolneno, lab1 perenesen! && goto main)
+if "%sym%"=="2" (cls && ren D:\example\FO LS && echo Vipolneno,papka teper' LS && goto main)
+if "%sym%"=="3" (cls && copy D:\example\LS\lab1.txt+D:\example\i12\so\lab2.txt lab3.txt && echo Vipolneno, sozdan lab3.txt && goto main)
+if "%sym%"=="4" (cls && ren D:\example\lab3.txt tekst.txt && echo Vipolneno,file teper' tekst.txt && goto main)
+if "%sym%"=="5" (cls && mkdir example2 && echo vipolneno, papka sozdana! && goto main)
+if "%sym%"=="6" (cls && xcopy /s /e D:\example %example2% && goto main)
+if "%sym%"=="7" (cls && rd D:\example\LS /s /q && echo Vipolneno, udalena LS! && goto main)
+if "%sym%"=="8" (cls && mkdir D:\example\FP && echo Vipolneno, Sozdana papka FP! && goto main)
+if "%sym%"=="9" (cls && tree /f && goto main)
+if "%sym%"=="10" (cls && mkdir ABC CBA DEF && echo Vipolneno Sozdani papki! && goto main)
+if "%sym%"=="11" (cls && goto main)
+if "%sym%"=="12" (cd .. && rd D:\example /s /q && start && goto exit)
+if "%sym%"=="13" (cd .. && rd D:\example /s /q && goto exit) else (cls && echo Variantov bol'she net, begi otsuda! && goto main)
+
+goto main
+
+:exit
+exit
+
+// лаба 4 DOS
+
+@echo off
+
+echo Sozdaem papki s failom i12\so\tekst1.txt
+D:
+mkdir example
+cd example
+mkdir i12
+cd i12
+mkdir so
+cd so
+copy con tekst1.txt
+copy con tekst2.txt
+cd ..
+cd ..
+cls
+
+
+:main
+echo 1 - Vivod file tekst1.txt v obratnom porjadke
+echo 2 - Vivod file tekst1.txt so 3 pozitii
+echo 3 - Poisk slova Apple s scetcikom /c
+echo 4 - Poisk slova Orange s scetcikom /v
+echo 5 - Poisk file-ov 29.02.2016
+echo 6 - Poisk vseh *.txt
+echo 7 - Poisk faila za mm\dd\yy v direktorii
+echo 8 - Poisk po nachalu slova "Ap", sortirovka ot nego v obratnom porjadke
+echo 9 - Poisk po nachalu slova "Or", sortirovka ot nego v obichnom porjadke
+echo 10 - opredelenie type tekst1, sortirovka ego
+echo 11 - kopirovanie tekst1 v tekst2, opredelenie type tekst1, sortirovka ego s 3ei pozitii
+echo 12 - exit
+
+
+
+set /p sym=Variant : 
+
+if "%sym%"=="1" (cls && sort /r D:\example\i12\so\tekst1.txt && goto main)
+if "%sym%"=="2" (cls && sort /+3 D:\example\i12\so\tekst1.txt && goto main)
+if "%sym%"=="3" (cls && find /c "Apple" D:\example\i12\so\tekst1.txt && goto main)
+if "%sym%"=="4" (cls && find /v "Orange" D:\example\i12\so\tekst1.txt && goto main)
+if "%sym%"=="5" (cls && dir D: | find "02/29/2016" && goto main)
+if "%sym%"=="6" (cls && dir D:\example\i12\so\*.txt && goto main)
+if "%sym%"=="7" (cls && dir D:\example\i12\so\ | find "03/09/2016" && goto main)
+if "%sym%"=="8" (find "Ap" D:\example\i12\so\tekst1.txt | sort /r && goto main)
+if "%sym%"=="9" (find "Or" D:\example\i12\so\tekst1.txt | sort  && goto main)
+if "%sym%"=="10" (type D:\example\i12\so\tekst1.txt | sort && goto main)
+if "%sym%"=="11" (copy D:\example\i12\so\tekst1.txt D:\example\i12\so\tekst2.txt | type D:\example\i12\so\tekst1.txt | sort /+3)
+if "%sym%"=="12" (rd D:\example /s /q && goto exit) else (cls && echo Variantov bol'she net, begi otsuda! && goto main)
+
+goto main
+
+:exit
+exit
+
+
+
